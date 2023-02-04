@@ -1,18 +1,35 @@
 import Head from 'next/head';
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
-import { Box, Button, Center, Container } from '@chakra-ui/react';
+import { Container, Stack, StackDivider } from '@chakra-ui/react';
 import { Stepper } from '../components/Stepper';
+import type { StepperItemsType } from '../components/Stepper';
 
 export default function Home() {
-  const [index, setIndex] = useState(0);
-  const router = useRouter();
-
-  useEffect(() => {
-    if (router.isReady) {
-      setIndex(Number(router.query.index) || 0);
-    }
-  }, [router]);
+  const items1: StepperItemsType = [
+    { label: 'STEP1' },
+    { label: 'STEP2' },
+    { label: 'STEP3' },
+  ];
+  const items2: StepperItemsType = [
+    { label: 'STEP1' },
+    { label: 'STEP2' },
+    { label: 'STEP3' },
+    { label: 'STEP4' },
+  ];
+  const items3: StepperItemsType = [
+    { label: 'STEP1' },
+    { label: 'STEP2' },
+    { label: 'STEP3' },
+    { label: 'STEP4' },
+    { label: 'STEP5' },
+  ];
+  const items4: StepperItemsType = [
+    { label: 'STEP1' },
+    { label: 'STEP2' },
+    { label: 'STEP3' },
+    { label: 'STEP4' },
+    { label: 'STEP5' },
+    { label: 'STEP6' },
+  ];
   return (
     <>
       <Head>
@@ -20,16 +37,13 @@ export default function Home() {
         <meta name='description' content='Stepper sample' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <Container>
-        <Stepper activeIndex={index} />
-        <Center>
-          <Button w='15vw' m={2} onClick={() => setIndex((prev) => prev + 1)}>
-            +1
-          </Button>
-          <Button w='15vw' m={2} onClick={() => setIndex((prev) => prev - 1)}>
-            -1
-          </Button>
-        </Center>
+      <Container mt={8} maxW='container.lg'>
+        <Stack divider={<StackDivider />} spacing={8}>
+          <Stepper items={items1} />
+          <Stepper items={items2} />
+          <Stepper items={items3} />
+          <Stepper items={items4} />
+        </Stack>
       </Container>
     </>
   );

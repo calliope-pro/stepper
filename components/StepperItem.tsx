@@ -1,14 +1,16 @@
 import { ListItem } from '@chakra-ui/react';
 
-type StepperItemPropType = {
+export type StepperItemPropType = {
   label: string;
   isActive: boolean;
+  isFirst?: boolean;
   isLast?: boolean;
 };
 
 export const StepperItem: React.FC<StepperItemPropType> = ({
   label,
   isActive,
+  isFirst = false,
   isLast = false,
 }) => {
   return (
@@ -22,18 +24,18 @@ export const StepperItem: React.FC<StepperItemPropType> = ({
       bgColor={isActive ? 'gray.600' : 'gray.300'}
       position='relative'
       _after={
-        !isLast
+        !isFirst
           ? {
               content: "''",
               position: 'absolute',
               top: 0,
-              right: '-48px',
+              left: '1px',
               width: 0,
               height: 0,
               border: '24px solid transparent',
               borderLeftWidth: '24px',
-              zIndex: 500,
-              borderLeftColor: isActive ? 'gray.600' : 'gray.300',
+              zIndex: 300,
+              borderLeftColor: 'white',
             }
           : undefined
       }
@@ -43,13 +45,13 @@ export const StepperItem: React.FC<StepperItemPropType> = ({
               content: "''",
               position: 'absolute',
               top: 0,
-              right: '-52px',
+              right: -12,
               width: 0,
               height: 0,
               border: '24px solid transparent',
               borderLeftWidth: '24px',
               zIndex: 500,
-              borderLeftColor: 'white',
+              borderLeftColor: isActive ? 'gray.600' : 'gray.300',
             }
           : undefined
       }
