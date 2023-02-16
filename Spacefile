@@ -2,7 +2,10 @@
 v: 0
 app_name: stepper
 micros:
-    - name: stepper
-      src: .
-      engine: next
-      primary: true
+  - name: stepper
+    src: .
+    engine: next
+    public_routes:
+      - '/*'
+    primary: true
+
